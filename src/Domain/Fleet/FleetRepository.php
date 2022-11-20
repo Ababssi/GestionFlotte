@@ -1,10 +1,10 @@
 <?php
 
+namespace Domain\Fleet;
 
-namespace domain\Fleet\FleetRepositoty;
-
-interface FleetRepositoty
+interface FleetRepository
 {
-    public function isVehiculeOnFleet($vehiculeId): bool;
-    public function addVehicule($vehiculeId);
+    //public function get(int $fleetId): Fleet;
+    public function isVehiculeOnFleet($vehiculeId, $fleetId): bool;
+    public function addVehicule($vehiculeId, $fleetId): array;
 }

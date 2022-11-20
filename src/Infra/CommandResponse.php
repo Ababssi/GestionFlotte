@@ -1,10 +1,9 @@
 <?php
 
-namespace infra\CommandResponse;
+namespace Infra;
 
-class CommandReponse
+class CommandResponse
 {
-
     static function withValue($message)
     {
         echo $message;
