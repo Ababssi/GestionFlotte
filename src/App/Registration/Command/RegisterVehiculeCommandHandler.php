@@ -2,10 +2,12 @@
 
 namespace App\Registration\Command;
 
+use Core\Command;
+use Core\CommandHandler;
+use Core\CommandResponse;
 use Domain\Fleet\FleetRepository;
-use Infra\CommandResponse;
 
-class RegisterVehiculeCommandHandler
+class RegisterVehiculeCommandHandler implements CommandHandler
 {
     public $repository;
     public function __construct(FleetRepository $repository)
@@ -13,12 +15,13 @@ class RegisterVehiculeCommandHandler
         $this->repository = $repository;
     }
 
-    public function handle(RegisterVehiculeCommand $command)
+    public function handle(Command $command): CommandResponse
+
     {
         if ($this->repository->isVehiculeOnFleet($command->vehiculeId, $command->fleetId)) {
-            CommandResponse::withValue('Vehicle already registered into this fleet');
+            return new CommandResponse('Vehicle already registered into this fleet');
         }
         $this->repository->addVehicule($command->vehiculeId, $command->fleetId);
-        return CommandResponse::withValue('Vehicule registered');
+        return new CommandResponse('Vehicule registered');
     }
 }

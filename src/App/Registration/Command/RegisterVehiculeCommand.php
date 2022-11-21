@@ -2,8 +2,10 @@
 
 namespace App\Registration\Command;
 
+use Core\Command;
 
-class RegisterVehiculeCommand
+
+class RegisterVehiculeCommand implements Command
 {
     public $vehiculeId;
     public $fleetId;
