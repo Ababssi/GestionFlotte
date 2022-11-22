@@ -16,7 +16,6 @@ class RegisterVehiculeCommandHandler implements CommandHandler
     }
 
     public function handle(Command $command): CommandResponse
-
     {
         if ($this->repository->isVehiculeOnFleet($command->vehiculeId, $command->fleetId)) {
             return new CommandResponse('Vehicle already registered into this fleet');
