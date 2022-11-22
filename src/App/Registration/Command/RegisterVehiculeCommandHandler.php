@@ -17,10 +17,10 @@ class RegisterVehiculeCommandHandler implements CommandHandler
 
     public function handle(Command $command): CommandResponse
     {
-        if ($this->repository->isVehiculeOnFleet($command->vehiculeId, $command->fleetId)) {
+        if ($this->repository->isVehiculeOnFleet($command->vehiclePlateNumber, $command->fleetId)) {
             return new CommandResponse('Vehicle already registered into this fleet');
         }
-        $this->repository->addVehicule($command->vehiculeId, $command->fleetId);
+        $this->repository->addVehicule($command->vehiclePlateNumber, $command->fleetId);
         return new CommandResponse('Vehicule registered');
     }
 }

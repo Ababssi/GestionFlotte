@@ -5,21 +5,28 @@ namespace Domain\Fleet;
 class Fleet
 {
     private $id;
-    private $vehicules;
+    private $userId;
 
-    public function __construct(int $id, array $vehicules)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->vehicules = $vehicules;
     }
 
+    // getter et setter
     public function getId(): int
     {
         return $this->id;
     }
-
-    public function getVehicules(): array
+    public function setId(int $id)
     {
-        return $this->vehicules;
+        $this->id = $id;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+    public function setUserId(int $userId)
+    {
+        $this->userId = $userId;
     }
 }

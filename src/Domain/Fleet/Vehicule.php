@@ -4,29 +4,28 @@ namespace Domain\Fleet\Vehicule;
 
 class Vehicule
 {
-    private $id;
-    private $type;
-    private $parked;
+    private $plateNumber;
+    private $localisation;
 
-    public function __construct(int $id, string $parked, string $type)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->parked = $parked;
-        $this->type = $type;
     }
 
-    public function id(): int
+    public function getPlateNumber(): int
     {
-        return $this->id;
+        return $this->plateNumber;
+    }
+    public function setPlateNumber(int $plateNumber)
+    {
+        $this->plateNumber = $plateNumber;
     }
 
-    public function parked(): string
+    public function getLocalisation(): string
     {
-        return $this->parked;
+        return $this->localisation;
     }
-
-    public function type(): string
+    public function setLocalisation(string $localisation)
     {
-        return $this->type;
+        $this->localisation = $localisation;
     }
 }

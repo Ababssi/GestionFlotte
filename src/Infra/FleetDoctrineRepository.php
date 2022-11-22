@@ -2,48 +2,75 @@
 
 namespace Infra;
 
-use Domain\Fleet\FleetRepository;
-use Domain\Fleet\Vehicule;
-use Domain\Fleet\Fleet;
 
-class FleetDoctrineRepository implements FleetRepository
+use Domain\Fleet\Fleet;
+use Domain\Fleet\Vehicule;
+use Database;
+use Domain\Fleet\FleetRepository;
+use FleetAbstract;
+
+class FleetDoctrineRepository extends FleetAbstract implements FleetRepository
 {
 
-    // public function get(int $fleetId): Fleet
-    // {
-    //     return new Fleet();
-    // }
 
-    public function isVehiculeOnFleet($vehiculeId, $fleetId): bool
+    public function isVehiculeOnFleet($vehiclePlateNumber, $fleetId): bool
     {
+        // getFleet
+        // pour chaque véhicule de la flotte est ce que le numéro de plaque correspond
+        // si oui return true
+        // sinon return false
+        // $db->getFleet($fleetId);
+
         $fleet = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        if (in_array($vehiculeId, $fleet)) {
+        if (in_array($vehiclePlateNumber, $fleet)) {
             return true;
         }
         return false;
     }
 
-    public function addVehicule($vehiculeId, $fleetId): array
+    public function addVehicule($vehiclePlateNumber, $fleetId): array
     {
+        // getFleet
+        // ajouter le véhicule à la flotte
+        // return ok 
         $fleet = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        $fleet[] = $vehiculeId;
+        $fleet[] = $vehiclePlateNumber;
         return $fleet;
     }
 
-    public function isVehiculePark(int $vehiculeId): bool
+    public function isVehiculePark(int $vehiclePlateNumber): bool
     {
-        $vehiculeId = 1;
-        $park = ['marseille', 'paris', 'lyon', 'toulouse', 'nice', 'nantes', 'montpellier', 'strasbourg', 'bordeaux', 'lille'];
-        if (in_array($vehiculeId, $park)) {
+        // getVehicule
+        // si le véhicule est dans un parking return true
+        // sinon return false
+
+        $vehiclePlateNumber = 1;
+        $park = [
+            'marseille', 'paris', 'lyon', 'toulouse', 'nice',
+            'nantes', 'montpellier', 'strasbourg', 'bordeaux', 'lille'
+        ];
+        if (in_array($vehiclePlateNumber, $park)) {
             return true;
         }
         return false;
     }
 
-    public function parkVehicule(int $vehiculeId)
+    public function parkVehicule(int $vehiclePlateNumber)
     {
-        $park = ['marseille', 'paris', 'lyon', 'toulouse', 'nice', 'nantes', 'montpellier', 'strasbourg', 'bordeaux', 'lille'];
-        $park[] = $vehiculeId;
+        // getVehicule
+        // ajouter la localisation du véhicule
+        // return ok
+
+        $park = [
+            'marseille', 'paris', 'lyon', 'toulouse', 'nice',
+            'nantes', 'montpellier', 'strasbourg', 'bordeaux', 'lille'
+        ];
+        $park[] = $vehiclePlateNumber;
         return $park;
+    }
+
+    public function createFleet(int $user)
+    {
+        return $this->db->createFleet($user);
     }
 }

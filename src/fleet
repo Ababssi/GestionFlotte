@@ -1,0 +1,72 @@
+#!/usr/bin/env php
+<?php
+
+require_once "config.php";
+require_once "autoload.php";
+
+use Domain\Fleet\Fleet;
+use Infra\FleetDoctrineRepository;
+use App\Registration\Command\RegisterVehiculeCommand;
+use App\Registration\Command\RegisterVehiculeCommandHandler;
+use App\Park\Command\ParkVehiculeCommand;
+use App\Park\Command\ParkVehiculeCommandHandler;
+use App\Create\Command\CreateFleetCommand;
+use App\Create\Command\CreateFleetCommandHandler;
+
+$howToUse = "
+    Voici la liste des commandes disponibles : \n
+    ./fleet create <userId> # returns fleetId on the standard output 
+    ./fleet register-vehicle <fleetId> <vehiclePlateNumber> 
+    ./fleet localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
+
+    ";
+if ($argc < 2) {
+    echo $howToUse;
+    exit;
+}
+switch ($argv[1]) {
+    case 'create':
+        createFleet($argv[2]);
+        break;
+    case 'register-vehicle':
+        registerVehicule($argv[2], $argv[3]);
+        break;
+    case 'localize-vehicle':
+        localizeVehicule($argv[2], $argv[3], $argv[4], $argv[5]);
+        break;
+    default:
+        echo $howToUse;
+}
+
+
+
+
+function createFleet($userId)
+{
+    $fleetRepository = new FleetDoctrineRepository();
+    $CreateFleetCommandHandler = new CreateFleetCommandHandler($fleetRepository);
+
+    $CreateFleetCommand = new CreateFleetCommand($userId);
+    $reponse = $CreateFleetCommandHandler->handle($CreateFleetCommand);
+    echo $reponse->getMessage();
+}
+
+function registerVehicule($fleetId, $vehiclePlateNumber)
+{
+    $fleetRepository = new FleetDoctrineRepository();
+    $registerVehiculeCommandHandler = new RegisterVehiculeCommandHandler($fleetRepository);
+
+    $registerVehiculeCommand = new RegisterVehiculeCommand($vehiclePlateNumber, $fleetId);
+    $reponse = $registerVehiculeCommandHandler->handle($registerVehiculeCommand);
+    echo $reponse->getMessage();
+}
+
+function localizeVehicule($fleetId, $vehiclePlateNumber, $lat, $lng)
+{
+    $fleetRepository = new FleetDoctrineRepository();
+    $parkVehiculeCommandHandler = new ParkVehiculeCommandHandler($fleetRepository);
+
+    $parkVehiculeCommand = new ParkVehiculeCommand($vehiclePlateNumber, $fleetId, $lat, $lng);
+    $reponse = $parkVehiculeCommandHandler->handle($parkVehiculeCommand);
+    echo $reponse->getMessage();
+}

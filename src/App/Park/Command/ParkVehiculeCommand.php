@@ -6,13 +6,13 @@ use Core\Command;
 
 class ParkVehiculeCommand implements Command
 {
-    public $vehiculeId;
+    public $vehiclePlateNumber;
     public $fleetId;
     public $location;
 
-    public function __construct($vehiculeId, $fleetId, $location)
+    public function __construct($vehiclePlateNumber, $fleetId, $location)
     {
-        $this->vehiculeId = $vehiculeId;
+        $this->vehiclePlateNumber = $vehiclePlateNumber;
         $this->fleetId = $fleetId;
         $this->location = $location;
     }

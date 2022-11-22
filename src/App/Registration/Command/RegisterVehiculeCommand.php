@@ -7,12 +7,12 @@ use Core\Command;
 
 class RegisterVehiculeCommand implements Command
 {
-    public $vehiculeId;
+    public $vehiclePlateNumber;
     public $fleetId;
 
-    public function __construct($vehiculeId, $fleetId)
+    public function __construct($vehiclePlateNumber, $fleetId)
     {
-        $this->vehiculeId = $vehiculeId;
+        $this->vehiclePlateNumber = $vehiclePlateNumber;
         $this->fleetId = $fleetId;
     }
 }
