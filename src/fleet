@@ -1,7 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-require_once "config.php";
 require_once "autoload.php";
 
 use Domain\Fleet\Fleet;

@@ -14,8 +14,6 @@ require_once "App/Create/Command/CreateFleetCommand.php";
 require_once "App/Create/Command/CreateFleetCommandHandler.php";
 
 require_once "Domain/Fleet/FleetRepository.php";
-require_once "Domain/Fleet/Fleet.php";
-require_once "Domain/Fleet/Vehicule.php";
 
 require_once "Infra/FleetAbstract.php";
 require_once "Infra/FleetDoctrineRepository.php";
