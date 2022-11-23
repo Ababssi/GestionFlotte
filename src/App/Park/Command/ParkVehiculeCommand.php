@@ -10,10 +10,10 @@ class ParkVehiculeCommand implements Command
     public $fleetId;
     public $location;
 
-    public function __construct($vehiclePlateNumber, $fleetId, $location)
+    public function __construct($vehiclePlateNumber, $fleetId, $lat, $lng)
     {
         $this->vehiclePlateNumber = $vehiclePlateNumber;
         $this->fleetId = $fleetId;
-        $this->location = $location;
+        $this->location = $lat . "-" . "$lng";
     }
 }

@@ -17,10 +17,10 @@ class ParkVehiculeCommandHandler implements CommandHandler
 
     public function handle(Command $command): CommandResponse
     {
-        if ($this->repository->isVehiculePark($command->vehiculeId)) {
-            return new CommandResponse('Vehicle already parked');
+        if ($this->repository->isVehiculeParkOn($command->vehiclePlateNumber, $command->location)) {
+            return new CommandResponse('Vehicle already parked at this location');
         }
-        $this->repository->parkVehicule($command->vehiculeId);
+        $this->repository->parkVehicule($command->vehiclePlateNumber, $command->location);
         return new CommandResponse('Vehicule parked');
     }
 }

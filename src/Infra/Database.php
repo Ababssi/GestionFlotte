@@ -14,18 +14,17 @@ class Database
             userId INTEGER NOT NULL
         )');
         $this->db->exec('CREATE TABLE IF NOT EXISTS vehicule (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            plateNumber INTEGER NOT NULL,
-            localisation TEXT NOT NULL,
-            fleetId INTEGER NOT NULL
+            plateNumber TEXT PRIMARY KEY,
+            localisation TEXT NULL
         )');
-        // creation une table de jointure entre vehicule et fleet
+
+        // table de jointure entre vehicule et fleet car relation n-n
         $this->db->exec('CREATE TABLE IF NOT EXISTS fleet_vehicule (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            vehiculeId INTEGER NOT NULL,
+            vehiclePlateNumber TEXT NOT NULL,
             fleetId INTEGER NOT NULL,
-            FOREIGN KEY (vehiculeId) REFERENCES vehicule(id),
-            FOREIGN KEY (fleetId) REFERENCES fleet(id)
+            FOREIGN KEY (fleetId) REFERENCES fleet(id),
+            FOREIGN KEY (vehiclePlateNumber) REFERENCES vehicule(plateNumber)
         )');
     }
 
@@ -35,35 +34,39 @@ class Database
         return $this->db->lastInsertRowID();
     }
 
-    function createVehicule(int $plateNumber, string $localisation): int
+    function createVehicule(string $plateNumber, string $localisation = null): int
     {
-        $this->db->exec("INSERT INTO vehicule (plateNumber, localisation) VALUES ($plateNumber, '$localisation')");
+        $this->db->exec("INSERT INTO vehicule (plateNumber, localisation) VALUES ('$plateNumber', '$localisation')");
         return $this->db->lastInsertRowID();
     }
 
-    function getFleet(int $fleetId): array
+    function getFleet(int $fleetId)
     {
         $result = $this->db->query("SELECT * FROM fleet WHERE id = $fleetId");
         return $result->fetchArray(SQLITE3_ASSOC);
     }
 
-    // add vehicule to fleet
-    function addVehiculeToFleet(int $vehiculeId, int $fleetId)
+    function assignVehiculeToFleet(string $vehiclePlateNumber, int $fleetId)
     {
-        $this->db->exec("INSERT INTO fleet_vehicule (vehiculeId, fleetId) VALUES ($vehiculeId, $fleetId)");
+        $this->db->exec("INSERT INTO fleet_vehicule (vehiclePlateNumber, fleetId) VALUES ('$vehiclePlateNumber', '$fleetId')");
         return $this->db->lastInsertRowID();
     }
 
-    // get vehicule from fleet
-    function getVehiculeFromFleet(int $fleetId): array
+    function setVehiculeLocalisation(string $vehiclePlateNumber, string $localisation)
     {
-        $result = $this->db->query("SELECT * FROM fleet_vehicule WHERE fleetId = $fleetId");
+        $this->db->exec("UPDATE vehicule SET localisation = '$localisation' WHERE plateNumber = '$vehiclePlateNumber'");
+    }
+
+    function isVehiculeOnFleet(string $vehiclePlateNumber, int $fleetId)
+    {
+        $result = $this->db->query("SELECT * FROM fleet_vehicule WHERE vehiclePlateNumber = '$vehiclePlateNumber' AND fleetId = '$fleetId'");
         return $result->fetchArray(SQLITE3_ASSOC);
     }
 
-    //set vehicule localisation
-    function setVehiculeLocalisation(int $vehiculeId, string $localisation)
+    function isVehiculePark(string $vehiclePlateNumber, string $localisation)
     {
-        $this->db->exec("UPDATE vehicule SET localisation = '$localisation' WHERE id = $vehiculeId");
+
+        $result = $this->db->query("SELECT * FROM vehicule WHERE plateNumber = '$vehiclePlateNumber' AND localisation = '$localisation'");
+        return $result->fetchArray(SQLITE3_ASSOC);
     }
 }

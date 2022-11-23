@@ -16,8 +16,8 @@ use App\Create\Command\CreateFleetCommandHandler;
 $howToUse = "
     Voici la liste des commandes disponibles : \n
     ./fleet create <userId> # returns fleetId on the standard output 
-    ./fleet register-vehicle <fleetId> <vehiclePlateNumber> 
-    ./fleet localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
+    ./fleet register-vehicule <fleetId> <vehiculePlateNumber> 
+    ./fleet localize-vehicule <fleetId> <vehiculePlateNumber> lat lng [alt]
 
     ";
 if ($argc < 2) {
@@ -28,10 +28,10 @@ switch ($argv[1]) {
     case 'create':
         createFleet($argv[2]);
         break;
-    case 'register-vehicle':
+    case 'register-vehicule':
         registerVehicule($argv[2], $argv[3]);
         break;
-    case 'localize-vehicle':
+    case 'localize-vehicule':
         localizeVehicule($argv[2], $argv[3], $argv[4], $argv[5]);
         break;
     default:
