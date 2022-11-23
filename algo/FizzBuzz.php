@@ -13,8 +13,3 @@ function fizzBuzz($number)
     }
     return $number;
 }
-
-for ($i = 1; $i <= 20; $i++) {
-    echo fizzBuzz($i);
-    echo "\n";
-}
