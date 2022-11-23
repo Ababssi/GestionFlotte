@@ -5,7 +5,7 @@ namespace App\Registration\Command;
 use Core\Command;
 use Core\CommandHandler;
 use Core\CommandResponse;
-use Domain\Fleet\FleetRepository;
+use Domain\FleetRepository;
 
 class RegisterVehiculeCommandHandler implements CommandHandler
 {

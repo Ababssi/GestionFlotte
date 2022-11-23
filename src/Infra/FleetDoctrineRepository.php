@@ -2,7 +2,7 @@
 
 namespace Infra;
 
-use Domain\Fleet\FleetRepository;
+use Domain\FleetRepository;
 use FleetAbstract;
 
 class FleetDoctrineRepository extends FleetAbstract implements FleetRepository

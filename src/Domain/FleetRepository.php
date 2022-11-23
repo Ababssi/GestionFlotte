@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Fleet;
+namespace Domain;
 
 interface FleetRepository
 {

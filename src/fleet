@@ -1,9 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-require_once "autoload.php";
+require_once "Infra/autoload.php";
 
-use Domain\Fleet\Fleet;
 use Infra\FleetDoctrineRepository;
 use App\Registration\Command\RegisterVehiculeCommand;
 use App\Registration\Command\RegisterVehiculeCommandHandler;

@@ -3,7 +3,7 @@
 require_once "Infra/Database.php";
 abstract class FleetAbstract
 {
-    const DATABASE_FILENAME = 'db.sqlite';
+    const DATABASE_FILENAME = 'Infra/db.sqlite';
 
     public function __construct()
     {
