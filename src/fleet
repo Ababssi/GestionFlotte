@@ -68,3 +68,15 @@ function localizeVehicule($fleetId, $vehiclePlateNumber, $lat, $lng)
     $reponse = $parkVehiculeCommandHandler->handle($parkVehiculeCommand);
     echo $reponse->getMessage();
 }
+
+
+
+// tests
+
+// ./fleet create 1 ->should return "FleetId" (autoincrement)
+// ./fleet register-vehicule 1 123456 -> should return "Vehicule registered"
+// ./fleet localize-vehicule 1 123456 48.856614 2.3522219 -> should return "Vehicule parked"
+
+// ./fleet register-vehicule 2 123456 -> should return "Fleet not found"
+// ./fleet register-vehicule 1 123456 -> should return "Vehicle already registered into this fleet"
+// ./fleet localize-vehicule 1 123456 48.856614 2.3522219 -> should return "Vehicle already parked at this location"

@@ -65,7 +65,6 @@ class Database
 
     function isVehiculePark(string $vehiclePlateNumber, string $localisation)
     {
-
         $result = $this->db->query("SELECT * FROM vehicule WHERE plateNumber = '$vehiclePlateNumber' AND localisation = '$localisation'");
         return $result->fetchArray(SQLITE3_ASSOC);
     }
