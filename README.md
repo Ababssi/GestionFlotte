@@ -1,4 +1,4 @@
-# Test Recrutement Fulll
+## Test Recrutement Fulll
 
 # Back-end
 
@@ -18,6 +18,7 @@ des véhicules et leurs localisations.
 Command Query Responsability Segregation `Architecture`
 Hexagonale `Architecture`
 Domain-Driven `Design`
+Avec pour repère : `https://youtu.be/qBLtZN3p3FU` video de Arnaud Lemaire - PHP Tour 2018
 
 # BDD sqlite3
 
