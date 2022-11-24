@@ -13,3 +13,14 @@ function fizzBuzz($number)
     }
     return $number;
 }
+
+
+//fizzBuzz() de 1 à n
+function fizzBuzzList($n)
+{
+    $list = [];
+    for ($i = 1; $i <= $n; $i++) {
+        $list[] = fizzBuzz($i);
+    }
+    return $list;
+}
