@@ -20,7 +20,7 @@ Hexagonale **Architecture**
 Domain-Driven **Design**  
 Avec pour repère : `https://youtu.be/qBLtZN3p3FU` video de Arnaud Lemaire - PHP Tour 2018
 
-## BDD sqlite3
+## BDD sqlite3 (telecharger de l'extension Sqlite pour votre IDE)
 
 3 tables : fleet, vehicule, fleet_vehicule  
 type de relation entre fleet et vehicule : n-n
