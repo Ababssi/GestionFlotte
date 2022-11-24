@@ -1,6 +1,6 @@
 # Test Recrutement Fulll
 
-# Back-end
+# Back-end + Algo FizzBuzz
 
 ## Info Candidat :
 
