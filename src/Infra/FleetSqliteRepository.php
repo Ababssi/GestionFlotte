@@ -5,22 +5,24 @@ namespace Infra;
 use Domain\FleetRepository;
 use FleetAbstract;
 
-class FleetDoctrineRepository extends FleetAbstract implements FleetRepository
+class FleetSqliteRepository extends FleetAbstract implements FleetRepository
 {
 
-    public function isVehiculeOnFleet(string $vehiclePlateNumber, $fleetId): bool
+    public function isVehiculeInFleet(string $vehiclePlateNumber, $fleetId): bool
     {
-        $result = $this->db->isVehiculeOnFleet($vehiclePlateNumber, intval($fleetId));
+        $result = $this->db->isVehiculeInFleet($vehiclePlateNumber, intval($fleetId));
         return $result === false ? false : true;
     }
 
     public function registerVehicule($vehiclePlateNumber, $fleetId): void
     {
-        $this->db->createVehicule($vehiclePlateNumber);
+        if (!$this->db->isVehiculeExist($vehiclePlateNumber)) {
+            $this->db->createVehicule($vehiclePlateNumber);
+        }
         $this->db->assignVehiculeToFleet($vehiclePlateNumber, $fleetId);
     }
 
-    public function isVehiculeParkOn(string $vehiclePlateNumber, string $location): bool
+    public function isVehiculeAlreadyParked(string $vehiclePlateNumber, string $location): bool
     {
         $result = $this->db->isVehiculePark($vehiclePlateNumber, $location);
         return $result === false ? false : true;

@@ -57,7 +57,7 @@ class Database
         $this->db->exec("UPDATE vehicule SET localisation = '$localisation' WHERE plateNumber = '$vehiclePlateNumber'");
     }
 
-    function isVehiculeOnFleet(string $vehiclePlateNumber, int $fleetId)
+    function isVehiculeInFleet(string $vehiclePlateNumber, int $fleetId)
     {
         $result = $this->db->query("SELECT * FROM fleet_vehicule WHERE vehiclePlateNumber = '$vehiclePlateNumber' AND fleetId = '$fleetId'");
         return $result->fetchArray(SQLITE3_ASSOC);
@@ -67,5 +67,11 @@ class Database
     {
         $result = $this->db->query("SELECT * FROM vehicule WHERE plateNumber = '$vehiclePlateNumber' AND localisation = '$localisation'");
         return $result->fetchArray(SQLITE3_ASSOC);
+    }
+
+    function isVehiculeExist(string $plateNumber): bool
+    {
+        $result = $this->db->query("SELECT plateNumber FROM vehicule WHERE plateNumber = '$plateNumber'");
+        return $result === false ? false : true;
     }
 }

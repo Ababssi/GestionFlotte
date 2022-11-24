@@ -1,9 +1,9 @@
 #!/usr/bin/env php
 <?php
 
-require_once "Infra/autoload.php";
+require_once "autoload.php";
 
-use Infra\FleetDoctrineRepository;
+use Infra\FleetSqliteRepository;
 use App\Registration\Command\RegisterVehiculeCommand;
 use App\Registration\Command\RegisterVehiculeCommandHandler;
 use App\Park\Command\ParkVehiculeCommand;
@@ -38,10 +38,9 @@ switch ($argv[1]) {
 
 
 
-
 function createFleet($userId)
 {
-    $fleetRepository = new FleetDoctrineRepository();
+    $fleetRepository = new FleetSqliteRepository();
     $CreateFleetCommandHandler = new CreateFleetCommandHandler($fleetRepository);
 
     $CreateFleetCommand = new CreateFleetCommand($userId);
@@ -51,7 +50,7 @@ function createFleet($userId)
 
 function registerVehicule($fleetId, $vehiclePlateNumber)
 {
-    $fleetRepository = new FleetDoctrineRepository();
+    $fleetRepository = new FleetSqliteRepository();
     $registerVehiculeCommandHandler = new RegisterVehiculeCommandHandler($fleetRepository);
 
     $registerVehiculeCommand = new RegisterVehiculeCommand($vehiclePlateNumber, $fleetId);
@@ -61,7 +60,7 @@ function registerVehicule($fleetId, $vehiclePlateNumber)
 
 function localizeVehicule($fleetId, $vehiclePlateNumber, $lat, $lng)
 {
-    $fleetRepository = new FleetDoctrineRepository();
+    $fleetRepository = new FleetSqliteRepository();
     $parkVehiculeCommandHandler = new ParkVehiculeCommandHandler($fleetRepository);
 
     $parkVehiculeCommand = new ParkVehiculeCommand($vehiclePlateNumber, $fleetId, $lat, $lng);
