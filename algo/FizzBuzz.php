@@ -1,4 +1,6 @@
+#!/usr/bin/env php
 <?php
+
 
 function fizzBuzz($number)
 {
@@ -24,3 +26,5 @@ function fizzBuzzList($n)
     }
     return $list;
 }
+
+print_r(fizzBuzzList($argv[1]));

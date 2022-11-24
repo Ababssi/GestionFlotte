@@ -8,7 +8,12 @@ Ababssi Sophien
 abasop1@gmail.com  
 0634124062
 
-## Objectif :
+## Objectif Algo :
+
+Lancement de l'algo : 'php FizzBuzz.php n'  
+La liste des nombres de 1 à n est affichée dans le terminal.
+
+## Objectif back-end :
 
 Concevoir une application en PHP permettant de gérer des flottes,  
 des véhicules et leurs localisations.
