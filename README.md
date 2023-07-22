@@ -1,5 +1,3 @@
-# Test Recrutement Fulll
-
 # Back-end + Algo FizzBuzz
 
 ## Info Candidat :
